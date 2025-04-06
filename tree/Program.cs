@@ -15,20 +15,16 @@ class Program
         public TreeNode Root { get; set; }
     }
 
-    static int GetMaxDepth(TreeNode node)
+    static int GetMaxBranches(TreeNode node)
     {
-        if (node == null)
-        {
+        if (node == null || node.Children.Count == 0)
             return 0;
-        }
 
-        int maxDepth = 0;
+        int maxBranches = 0;
         foreach (var child in node.Children)
-        {
-            maxDepth = Math.Max(maxDepth, GetMaxDepth(child));
-        }
+            maxBranches = Math.Max(maxBranches, 1 + GetMaxBranches(child));
 
-        return maxDepth + 1;
+        return maxBranches;
     }
 
     static void PrintTree(TreeNode node, string indent = "", bool isLast = true)
@@ -72,7 +68,7 @@ class Program
             } },
         };
 
-        Console.WriteLine(GetMaxDepth(tree.Root) - 1);
+        Console.WriteLine(GetMaxBranches(tree.Root));
         Console.WriteLine();
         PrintTree(tree.Root);
     }
