@@ -68,7 +68,7 @@ class Program
             } },
         };
 
-        Console.WriteLine(GetMaxBranches(tree.Root));
+        Console.WriteLine($"Max Branches: {GetMaxBranches(tree.Root)}");
         Console.WriteLine();
         PrintTree(tree.Root);
     }
